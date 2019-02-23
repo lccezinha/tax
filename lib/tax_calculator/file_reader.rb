@@ -26,7 +26,7 @@ module TaxCalculator
     def transform_line_in_hash(line)
       {
         quantity: line.scan(QUANTITY_REGEX).first.to_i,
-        product_name: line.gsub(QUANTITY_REGEX, '').gsub(PRICE_REGEX, '').strip.gsub(/at$/, '').strip,
+        name: line.gsub(QUANTITY_REGEX, '').gsub(PRICE_REGEX, '').strip.gsub(/at$/, '').strip,
         price: line.scan(PRICE_REGEX).first.to_f
       }
     end

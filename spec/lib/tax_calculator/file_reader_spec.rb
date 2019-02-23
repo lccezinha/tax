@@ -7,9 +7,9 @@ RSpec.describe TaxCalculator::FileReader do
     let(:file_path) { './input_test.md' }
     let(:expected) do
       [
-        { quantity: 2, product_name: 'book', price: 12.49 },
-        { quantity: 1, product_name: 'music CD', price: 14.99 },
-        { quantity: 1, product_name: 'chocolate bar', price: 0.85 }
+        { quantity: 2, name: 'book', price: 12.49 },
+        { quantity: 1, name: 'music CD', price: 14.99 },
+        { quantity: 1, name: 'chocolate bar', price: 0.85 }
       ]
     end
 
