@@ -5,10 +5,6 @@ module TaxCalculator
     # Import duty is an additional sales tax applicable on all imported goods at a rate of 5%,
     # with no exemptions.
 
-    # 2 book at 12.49
-    # 1 music CD at 14.99
-    # 1 chocolate bar at 0.85
-
     EXEMPT_PRODUCTS = ['book', 'chocolate bar']
     BASIC_TAX_PERCENTAGE = 0.1
     IMPORT_DUTY_TAX_PERCENTAGE = 0.05
@@ -18,21 +14,6 @@ module TaxCalculator
       @result = { products: [], taxes: 0.0, total: 0.0 }
     end
 
-    # {
-    #   products: [
-    #     { quantity: 2, name: 'book', price_with_taxes: 24.98 },
-    #     { quantity: 1, name: 'music CD', price_with_taxes: 16.49 },
-    #     { quantity: 1, name: 'chocolate bar', price_with_taxes: 0.85 }
-    #   ],
-    #   taxes: 1.5,
-    #   total: 42.32
-    # }
-
-    # { quantity: 2, name: 'book', price_with_taxes: 24.98, taxes: 0.0 },
-    # { quantity: 1, name: 'music CD', price_with_taxes: 16.49, taxes: 1.5 },
-    # { quantity: 1, name: 'chocolate bar', price_with_taxes: 0.85, taxes: 0.0 }
-
-    # { quantity: 2, name: 'book', total_price: 2, taxes: 0.0 }
     def calculate
       taxes = 0.0
       total = 0.0
