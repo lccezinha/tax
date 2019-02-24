@@ -1,5 +1,10 @@
 module TaxCalculator
   class FileReader
+    QUANTITY_REGEX = /^\d+/.freeze
+    PRICE_REGEX = /[0-9]{1,}.[0-9]{1,}$/.freeze
+
+    private_constant :QUANTITY_REGEX, :PRICE_REGEX
+
     def initialize(file_path)
       @file_path = file_path
     end
@@ -11,11 +16,6 @@ module TaxCalculator
     private
 
     attr_reader :file_path
-
-    QUANTITY_REGEX = /^\d+/.freeze
-    PRICE_REGEX = /[0-9]{1,}.[0-9]{1,}$/.freeze
-
-    private_constant :QUANTITY_REGEX, :PRICE_REGEX
 
     def read_file_lines
       result = []

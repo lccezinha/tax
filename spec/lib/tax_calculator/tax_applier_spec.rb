@@ -3,7 +3,7 @@ require_relative '../../../lib/tax_calculator/tax_applier'
 RSpec.describe TaxCalculator::TaxApplier do
   subject(:applier) { described_class.new(product) }
 
-  describe ".apply" do
+  describe "#apply" do
     context 'when product in exempt from normal taxes' do
       let(:product) do
         double(

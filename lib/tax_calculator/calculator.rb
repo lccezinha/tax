@@ -9,20 +9,17 @@ module TaxCalculator
     end
 
     def calculate
-      taxes = 0.0
-      total = 0.0
-
       products.map do |product|
-        taxes = TaxApplier.new(product).apply
+        product_taxes = TaxApplier.new(product).apply
 
         item = {
           quantity: product.quantity,
           name: product.name,
-          price_with_taxes: (product.sub_total + taxes),
+          price_with_taxes: (product.sub_total + product_taxes),
         }
 
         result[:products].push(item)
-        result[:taxes] += taxes
+        result[:taxes] += product_taxes
         result[:total] += item[:price_with_taxes]
       end
 

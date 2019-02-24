@@ -3,7 +3,7 @@ require_relative '../../../lib/tax_calculator/printer'
 RSpec.describe TaxCalculator::Printer do
   subject(:printer) { described_class.new(data) }
 
-  describe ".print" do
+  describe "#print" do
     let(:data) do
       {
         products: [
