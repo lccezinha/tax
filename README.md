@@ -49,3 +49,11 @@ Total: 98.26
 
 ---
 ```
+
+# Running tests
+
+Access your console and run:
+
+```
+rspec
+```
