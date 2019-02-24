@@ -8,7 +8,7 @@ module TaxCalculator
     ['./input_1.md'].each do |file_path|
       products = FileReader.new(file_path).list_products
       calculated_result = Calculator.new(products).calculate
-      puts Printer.new(calculated_result).print
+      # puts Printer.new(calculated_result).print
     end
   end
 end

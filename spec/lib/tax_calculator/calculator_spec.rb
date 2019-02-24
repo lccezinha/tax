@@ -51,5 +51,32 @@ RSpec.describe TaxCalculator::Calculator do
         expect(calculator.calculate).to eq(expected)
       end
     end
+
+    context "when products list contains a mix of all products" do
+      let(:products_list) do
+        [
+          { quantity: 1, name: 'imported bottle of perfume', price: 27.99 },
+          { quantity: 1, name: 'bottle of perfume', price: 18.99 },
+          { quantity: 1, name: 'packet of headache pills', price: 9.75 },
+          { quantity: 3, name: 'imported box of chocolates', price: 11.25 }
+        ]
+      end
+      let(:expected) do
+        {
+          products: [
+            { quantity: 1, name: 'imported bottle of perfume', price_with_taxes: 32.19 },
+            { quantity: 1, name: 'bottle of perfume', price_with_taxes: 20.89 },
+            { quantity: 1, name: 'packet of headache pills', price_with_taxes: 9.75 },
+            { quantity: 3, name: 'imported box of chocolates', price_with_taxes: 35.55 }
+          ],
+          taxes: 7.90,
+          total: 98.38
+        }
+      end
+
+      it 'given and input of products must calculate the taxes' do
+        expect(calculator.calculate).to eq(expected)
+      end
+    end
   end
 end

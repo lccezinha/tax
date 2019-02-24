@@ -1,16 +1,10 @@
+require_relative './product'
+require_relative './tax_applier'
+
 module TaxCalculator
   class Calculator
-    # Basic sales tax is applicable at a rate of 10% on all goods, except books, food,
-    # and medical products that are exempt.
-    # Import duty is an additional sales tax applicable on all imported goods at a rate of 5%,
-    # with no exemptions.
-
-    EXEMPT_PRODUCTS = ['book', 'chocolate bar']
-    BASIC_TAX_PERCENTAGE = 0.1
-    IMPORT_DUTY_TAX_PERCENTAGE = 0.05
-
     def initialize(products_list)
-      @products_list = products_list
+      @products = products_list.map { |data| Product.new(data) }
       @result = { products: [], taxes: 0.0, total: 0.0 }
     end
 
@@ -18,30 +12,25 @@ module TaxCalculator
       taxes = 0.0
       total = 0.0
 
-      products_list.map do |product_line|
-        product_sub_total = product_line[:quantity] * product_line[:price]
-        product_taxes = EXEMPT_PRODUCTS.include?(product_line[:name]) ? 0.0 : product_sub_total * BASIC_TAX_PERCENTAGE
+      products.map do |product|
+        taxes = TaxApplier.new(product).apply
 
-        product = {
-          quantity: product_line[:quantity],
-          name: product_line[:name],
-          price_with_taxes: (product_sub_total + product_taxes).round(2),
+        item = {
+          quantity: product.quantity,
+          name: product.name,
+          price_with_taxes: (product.sub_total + taxes),
         }
 
-        taxes += product_taxes
-        total += product[:price_with_taxes]
-
-        result[:products].push(product)
+        result[:products].push(item)
+        result[:taxes] += taxes
+        result[:total] += item[:price_with_taxes]
       end
 
-      result[:taxes] = taxes.round(2)
-      result[:total] = total
       result
     end
 
-
     private
 
-    attr_reader :products_list, :result
+    attr_reader :products, :result
   end
 end
