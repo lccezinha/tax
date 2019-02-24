@@ -13,7 +13,7 @@ RSpec.describe TaxCalculator::Product do
     it { expect(product.price).to eq(data[:price]) }
   end
 
-  describe ".imported?" do
+  describe "#imported?" do
     context "when product name contain word imported" do
       let(:data) do
         { quantity: 1, name: 'imported box of chocolates', price: 10 }
@@ -31,7 +31,7 @@ RSpec.describe TaxCalculator::Product do
     end
   end
 
-  describe ".category" do
+  describe "#category" do
     context 'when product in a book' do
       let(:data) do
         { quantity: 1, name: 'imported books', price: 10 }
@@ -63,5 +63,13 @@ RSpec.describe TaxCalculator::Product do
 
       it { expect(product.category).to eq(:other) }
     end
+  end
+
+  describe "#sub_total" do
+    let(:data) do
+      { quantity: 2, name: 'foobar', price: 10.5 }
+    end
+
+    it { expect(product.sub_total).to eq(21) }
   end
 end

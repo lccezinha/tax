@@ -27,6 +27,10 @@ module TaxCalculator
       :other
     end
 
+    def sub_total
+      data[:price] * data[:quantity]
+    end
+
     private
 
     attr_reader :data
