@@ -3,14 +3,18 @@ require_relative './tax_applier'
 
 module TaxCalculator
   class Calculator
-    def initialize(products_list)
+
+    # The tax_applier is set as the default TaxApplier, but I decide pass it as a dependency
+    # to make it flexible to receive another tax_applier rules if need to change it.
+    def initialize(products_list, tax_applier = TaxApplier)
       @products = products_list.map { |data| Product.new(data) }
       @result = { products: [], taxes: 0.0, total: 0.0 }
+      @tax_applier = tax_applier
     end
 
     def calculate
       products.map do |product|
-        product_taxes = TaxApplier.new(product).apply
+        product_taxes = tax_applier.new(product).apply
 
         item = {
           quantity: product.quantity,
@@ -28,6 +32,6 @@ module TaxCalculator
 
     private
 
-    attr_reader :products, :result
+    attr_reader :products, :result, :tax_applier
   end
 end
