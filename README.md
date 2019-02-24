@@ -1,39 +1,51 @@
 # TaxCalculator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tax_calculator`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to the TaxCalculator.
 
-TODO: Delete this and the text above, and describe your gem
+This whole structure was built to calculate the product and its taxes based on the product category.
 
-## Installation
+The structure is composed of the following classes:
 
-Add this line to your application's Gemfile:
+- `Calculator`: The class that is responsible to loop through all products all return the result with applied taxes.
+- `FileReader`: The class that is responsible to read the input files and format the result in a proper way to be used in the calculator class.
+- `Printer`: The class that is responsible to receive the data and print it out on the screen.
+- `Product`: The class that is responsible to map the data to a product.
+- `TaxApplier`: The class that receives a product and apply the taxes on its values.
 
-```ruby
-gem 'tax_calculator'
+# How to use it?
+
+Access the project folder and run the command:
+
 ```
+ruby lib/tax_calculator.rb
 
-And then execute:
+Products with taxes for list: ./input_1.md:
 
-    $ bundle
+2 book: 24.98
+1 music CD: 16.49
+1 chocolate bar: 0.85
+Sales Taxes: 1.50
+Total: 42.32
 
-Or install it yourself as:
+---
 
-    $ gem install tax_calculator
+Products with taxes for list: ./input_2.md:
 
-## Usage
+1 imported box of chocolates: 10.50
+1 imported bottle of perfume: 54.62
+Sales Taxes: 7.62
+Total: 65.12
 
-TODO: Write usage instructions here
+---
 
-## Development
+Products with taxes for list: ./input_3.md:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+1 imported bottle of perfume: 32.19
+1 bottle of perfume: 20.89
+1 packet of headache pills: 9.75
+3 box of imported chocolates: 35.44
+Sales Taxes: 7.78
+Total: 98.26
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tax_calculator.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+---
+```
