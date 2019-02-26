@@ -19,12 +19,12 @@ module TaxCalculator
         item = {
           quantity: product.quantity,
           name: product.name,
-          price_with_taxes: (product.sub_total + product_taxes),
+          price_with_taxes: (product.sub_total + product_taxes).round(2),
         }
 
         result[:products].push(item)
-        result[:taxes] += product_taxes
-        result[:total] += item[:price_with_taxes]
+        result[:taxes] += product_taxes.round(2)
+        result[:total] += item[:price_with_taxes].round(2)
       end
 
       result
